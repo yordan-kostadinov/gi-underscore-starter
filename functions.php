@@ -135,21 +135,6 @@ function gi_underscore_starter_widgets_init() {
 add_action( 'widgets_init', 'gi_underscore_starter_widgets_init' );
 
 /**
- * Enqueue scripts and styles.
- */
-function gi_underscore_starter_scripts() {
-	wp_enqueue_style( 'gi-underscore-starter-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'gi-underscore-starter-style', 'rtl', 'replace' );
-
-	wp_enqueue_script( 'gi-underscore-starter-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-}
-add_action( 'wp_enqueue_scripts', 'gi_underscore_starter_scripts' );
-
-/**
  * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';
@@ -182,3 +167,18 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce.php';
 }
+
+/**
+ * Include enqueues.
+ */
+require get_template_directory() . '/inc/enqueues.php';
+
+/**
+ * Include bootstrap navwalker.
+ */
+require get_template_directory() . '/inc/class-wp-bootstrap-navwalker.php';
+
+/**
+ * Include theme settings.
+ */
+require get_template_directory() . '/inc/theme-settings.php';
